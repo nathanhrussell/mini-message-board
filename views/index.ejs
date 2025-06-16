@@ -1,0 +1,11 @@
+<h1>Message Board</h1>
+<a href="/new">New Message</a>
+<ul>
+  <% messages.forEach((msg, index) => { %>
+    <li>
+      <strong><%= msg.user %></strong> (<%= msg.date.toLocaleString() %>)<br>
+      <%= msg.text %><br>
+      <a href="/message/<%= index %>">Open</a>
+    </li>
+  <% }) %>
+</ul>
