@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const message = [
+const messages = [
     { user: "Alice", text: "Hello World!", date: new Date() },
     { user: "Bob", text: "I love express", date: new Date() }
 ];
