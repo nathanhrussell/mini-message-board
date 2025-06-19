@@ -1,11 +1,21 @@
-<h1>Message Board</h1>
-<a href="/new">New Message</a>
-<ul>
-  <% messages.forEach((msg, index) => { %>
-    <li>
-      <strong><%= msg.username %></strong> (<%= new Date(msg.timestamp).toLocaleString() %>)<br>
-      <%= msg.text %><br>
-      <a href="/message/<%= msg.id %>">Open</a>
-    </li>
-  <% }) %>
-</ul>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Message Board</title>
+</head>
+<body>
+  <h1>Message Board</h1>
+  <p><a href="/new">New Message</a></p>
+
+  <ul>
+    <% messages.forEach((msg) => { %>
+      <li>
+        <strong><%= msg.username %></strong> (<%= new Date(msg.timestamp).toLocaleString("en-GB") %>)<br>
+        <%= msg.text %><br>
+        <a href="/message/<%= msg.id %>">Open</a>
+      </li>
+    <% }) %>
+  </ul>
+</body>
+</html>
