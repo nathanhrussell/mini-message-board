@@ -17,10 +17,16 @@ router.post("/new", async (req, res) => {
   res.redirect("/");
 });
 
-router.get("/message/:id", (req, res) => {
-  const message = messages[req.params.id];
-  if (!message) return res.status(404).send("Message not found");
+router.get("/message/:id", async (req, res) => {
+  const id = parseInt(req.params.id, 10);
+  const message = await db.getMessageById(id);
+
+  if (!message) {
+    return res.status(404).send("Message not found");
+  }
+
   res.render("message", { message });
 });
+
 
 module.exports = router;

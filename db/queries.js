@@ -1,5 +1,10 @@
 const pool = require("./pool");
 
+async function getMessageById(id) {
+    const { rows } = await pool.query("SELECT * FROM messages WHERE id = $1", [id]);
+    return rows[0];
+}
+
 async function getAllMessages() {
     const { rows } = await pool.query("SELECT * FROM messages ORDER BY timestamp DESC");
     return rows
@@ -11,5 +16,6 @@ async function insertMessage(username, text) {
 
 module.exports = {
     getAllMessages,
-    insertMessage
+    insertMessage,
+    getMessageById
 };
