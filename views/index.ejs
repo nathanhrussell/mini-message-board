@@ -3,9 +3,9 @@
 <ul>
   <% messages.forEach((msg, index) => { %>
     <li>
-      <strong><%= msg.user %></strong> (<%= msg.date.toLocaleString() %>)<br>
+      <strong><%= msg.username %></strong> (<%= new Date(msg.timestamp).toLocaleString() %>)<br>
       <%= msg.text %><br>
-      <a href="/message/<%= index %>">Open</a>
+      <a href="/message/<%= msg.id %>">Open</a>
     </li>
   <% }) %>
 </ul>
