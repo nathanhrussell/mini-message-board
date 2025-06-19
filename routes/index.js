@@ -1,12 +1,9 @@
 const express = require("express");
 const router = express.Router();
+const db = require("../db/queries");
 
-const messages = [
-    { user: "Alice", text: "Hello World!", date: new Date() },
-    { user: "Bob", text: "I love express", date: new Date() }
-];
-
-router.get("/", (req, res) => {
+router.get("/", async (req, res) => {
+    const messages = await db.getAllMessages();
     res.render("index", { messages });
 });
 
@@ -14,9 +11,9 @@ router.get("/new", (req, res) => {
     res.render("form");
 });
 
-router.post("/new", (req, res) => {
-  const { user, text } = req.body;
-  messages.push({ user, text, date: new Date() });
+router.post("/new", async (req, res) => {
+  const { username, text } = req.body;
+  await db.insertMessage(username, text);
   res.redirect("/");
 });
 
